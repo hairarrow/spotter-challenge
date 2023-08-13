@@ -16,6 +16,9 @@ const getBaseUrl = () => {
   return `http://localhost:${process.env.PORT ?? 3000}`; // dev SSR should use localhost
 };
 
+export const getApiUrl = (path: string) =>
+  `${process.env.SPOTTER_API_URL}${path}`;
+
 /** A set of type-safe react-query hooks for your tRPC API. */
 export const api = createTRPCNext<AppRouter>({
   config() {
