@@ -1,4 +1,5 @@
 import type { ActWithBeats } from "~/server/api/routers/act";
+import { BeatList } from "~/components/BeatList";
 import DeletePopover from "./DeletePopover";
 
 export interface Props {
@@ -15,14 +16,7 @@ export default function Act({ act }: Props) {
         <DeletePopover act={act} />
       </div>
 
-      <ul className="no-scrollbar flex snap-x flex-row gap-4 overflow-x-scroll px-2">
-        {act.beats.map((beat) => (
-          <li key={beat.id} className="snap-start">
-            <div className="h-40 w-72 rounded-lg bg-zinc-800" />
-            <div className="text-sm text-zinc-500">{beat.name}</div>
-          </li>
-        ))}
-      </ul>
+      <BeatList act={act} />
     </li>
   );
 }

@@ -5,8 +5,19 @@ import { api } from "~/utils/api";
 import type { Props as ActProps } from "./Act";
 
 export default function DeletePopover({ act }: ActProps) {
-  const { mutate: handleDeleteAct } = api.act.deleteAct.useMutation();
+  const { mutate: handleDeleteAct } = api.act.delete.useMutation();
   const utils = api.useContext();
+
+  function onDeleteAct() {
+    handleDeleteAct(act.id, {
+      onSuccess: () => {
+        utils.act.sheet
+          .invalidate()
+          .then(() => close())
+          .catch(console.error);
+      },
+    });
+  }
 
   return (
     <Popover className="relative top-1">
@@ -53,17 +64,7 @@ export default function DeletePopover({ act }: ActProps) {
                   </button>
                   <button
                     className="flex-row items-center justify-center gap-2 rounded-md bg-red-800 py-1 pl-4 pr-5 font-semibold text-white transition-colors hover:bg-red-800/80"
-                    onClick={() => {
-                      handleDeleteAct(act.id, {
-                        onSuccess: () => {
-                          utils.act.beatSheet
-                            .invalidate()
-                            .then(close)
-                            .catch(console.error);
-                        },
-                      });
-                      return;
-                    }}
+                    onClick={onDeleteAct}
                   >
                     <TrashIcon className="relative -top-0.5 mr-1.5 inline-flex h-5 w-5 scale-90" />
                     <div className="inline-flex leading-6">Delete</div>

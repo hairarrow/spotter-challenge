@@ -1,24 +1,9 @@
-import Act from "./Act/Act";
 import { api } from "~/utils/api";
+import { Act } from "~/components/Act";
+import { ActComposer } from "~/components/ActComposer";
 
 export default function BeatSheet() {
-  const { data } = api.act.beatSheet.useQuery();
-  const { mutate: handleCreateAct } = api.act.createAct.useMutation();
-  const utils = api.useContext();
-
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get("name") as string;
-
-    if (name) {
-      handleCreateAct(name, {
-        onSuccess: () => {
-          utils.act.beatSheet.invalidate().catch(console.error);
-        },
-      });
-    }
-  };
+  const { data } = api.act.sheet.useQuery();
 
   return (
     <div className="container mx-auto py-16">
@@ -28,10 +13,7 @@ export default function BeatSheet() {
         ))}
       </ul>
 
-      <form onSubmit={handleSubmit}>
-        <input name="name" placeholder="Name" />
-        <button className="bg-white">Create Act</button>
-      </form>
+      <ActComposer />
     </div>
   );
 }
