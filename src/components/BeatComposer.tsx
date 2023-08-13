@@ -28,7 +28,7 @@ export const BeatComposer: React.FC<Props> = ({ actId, onComplete }) => {
   return (
     <form className="flex flex-col" onSubmit={handleSubmit}>
       <label htmlFor="name">Beat Name</label>
-      <input type="text" name="name" className="text-zinc-900" />
+      <input type="text" name="name" className="text-zinc-900" autoFocus />
       <button type="submit">Create Beat</button>
     </form>
   );

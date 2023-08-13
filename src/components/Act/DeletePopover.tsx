@@ -20,7 +20,7 @@ export default function DeletePopover({ act }: ActProps) {
   }
 
   return (
-    <Popover className="relative top-1">
+    <Popover className="relative top-1 z-10">
       {({ open, close }) => (
         <>
           <Popover.Button

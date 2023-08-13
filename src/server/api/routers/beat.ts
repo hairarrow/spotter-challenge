@@ -4,7 +4,6 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { getApiUrl } from "~/utils/api";
 
 const beatSchema = z.object({
-  actId: z.number(),
   name: z.string().min(1).max(255),
   content: z.string().min(1).max(255).optional(),
   cameraAngle: z.string().min(1).max(255).optional(),
@@ -28,15 +27,38 @@ const beatSchema = z.object({
 });
 
 export const beatRouter = createTRPCRouter({
-  create: publicProcedure.input(beatSchema).mutation(async ({ input }) => {
-    await axios.post(getApiUrl(`/acts/${input.actId}/beats`), {
-      name: input.name,
-      content: input.content,
-      cameraAngle: input.cameraAngle,
-      notes: input.notes,
-      time: input.time,
-    });
-  }),
+  create: publicProcedure
+    .input(
+      z.object({
+        ...beatSchema.shape,
+        actId: z.number(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      await axios.post(getApiUrl(`/acts/${input.actId}/beats`), {
+        name: input.name,
+        content: input.content,
+        cameraAngle: input.cameraAngle,
+        notes: input.notes,
+        time: input.time,
+      });
+    }),
+  update: publicProcedure
+    .input(
+      z.object({
+        ...beatSchema.shape,
+        id: z.number(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      await axios.put(getApiUrl(`/acts/beats/${input.id}`), {
+        name: input.name,
+        content: input.content,
+        cameraAngle: input.cameraAngle,
+        notes: input.notes,
+        time: input.time,
+      });
+    }),
   delete: publicProcedure
     .input(
       z.object({
