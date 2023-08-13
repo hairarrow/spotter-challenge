@@ -1,12 +1,12 @@
 import type { ActWithBeats } from "~/server/api/routers/act";
 import { BeatList } from "~/components/BeatList";
-import DeletePopover from "./DeletePopover";
+import { DeletePopover } from "./DeletePopover";
 
 export interface Props {
   act: ActWithBeats;
 }
 
-export default function Act({ act }: Props) {
+export function Act({ act }: Props) {
   return (
     <li className="group/act border-t border-dashed border-zinc-500">
       <div className="flex items-center gap-4 px-2 pb-4">

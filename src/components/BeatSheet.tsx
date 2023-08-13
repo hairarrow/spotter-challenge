@@ -2,7 +2,7 @@ import { api } from "~/utils/api";
 import { Act } from "~/components/Act";
 import { ActComposer } from "~/components/ActComposer";
 
-export default function BeatSheet() {
+export function BeatSheet() {
   const { data } = api.act.sheet.useQuery();
 
   return (

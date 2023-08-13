@@ -1,5 +1,5 @@
 import Head from "next/head";
-import BeatSheet from "~/components/BeatSheet";
+import { BeatSheet } from "~/components/BeatSheet";
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         <meta name="description" content="Made with <3 for Spotter" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="bg-black">
+      <main className="min-h-screen bg-black">
         <BeatSheet />
       </main>
     </>

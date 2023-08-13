@@ -4,7 +4,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { api } from "~/utils/api";
 import type { Props as ActProps } from "./Act";
 
-export default function DeletePopover({ act }: ActProps) {
+export function DeletePopover({ act }: ActProps) {
   const { mutate: handleDeleteAct } = api.act.delete.useMutation();
   const utils = api.useContext();
 

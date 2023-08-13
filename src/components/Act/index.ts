@@ -1,1 +1,1 @@
-export { default as Act } from "./Act";
+export { Act } from "./Act";
