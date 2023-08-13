@@ -24,7 +24,7 @@ export interface ActWithBeats extends Act {
 }
 
 export const actRouter = createTRPCRouter({
-  beatSheet: publicProcedure.query(async () => {
+  sheet: publicProcedure.query(async () => {
     const actsList = await axios
       .get<Act[]>(getApiUrl("/acts"))
       .then((res) => res.data);
@@ -43,12 +43,12 @@ export const actRouter = createTRPCRouter({
 
     return actsListWithBeats as ActWithBeats[];
   }),
-  createAct: publicProcedure
+  create: publicProcedure
     .input(z.string().min(1).max(255))
     .mutation(async ({ input }) => {
       await axios.post(getApiUrl("/acts"), { name: input });
     }),
-  deleteAct: publicProcedure.input(z.number()).mutation(async ({ input }) => {
+  delete: publicProcedure.input(z.number()).mutation(async ({ input }) => {
     await axios.delete(getApiUrl(`/acts/${input}`));
   }),
 });
