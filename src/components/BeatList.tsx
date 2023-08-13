@@ -9,6 +9,7 @@ import { api } from "~/utils/api";
 
 export const BeatList: React.FC<Props> = ({ act }) => {
   const { mutate: deleteBeat } = api.beat.delete.useMutation();
+  const { mutate: updateBeat } = api.beat.update.useMutation();
   const [isAdding, setIsAdding] = useState(false);
   const ref = useClickAway<HTMLUListElement>(() => setIsAdding(false));
   const utils = api.useContext();
@@ -31,7 +32,22 @@ export const BeatList: React.FC<Props> = ({ act }) => {
     >
       {act.beats.map((beat) => (
         <li key={beat.id} className="group relative snap-start">
-          <div className="h-40 w-72 rounded-lg bg-zinc-800">
+          <div
+            className="h-40 w-72 rounded-lg bg-zinc-800"
+            onClick={() => {
+              updateBeat(
+                {
+                  id: beat.id,
+                  name: "foobar",
+                },
+                {
+                  onSuccess: () => {
+                    utils.act.sheet.invalidate().catch(console.error);
+                  },
+                }
+              );
+            }}
+          >
             <button
               className="absolute right-0 top-0 p-2 opacity-30 transition-all hover:text-zinc-200 group-hover:opacity-100"
               onClick={() => onDeleteBeat(beat.id)}
