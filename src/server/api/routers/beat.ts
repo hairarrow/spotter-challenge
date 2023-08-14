@@ -1,13 +1,14 @@
 import axios from "axios";
 import { z } from "zod";
+
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { getApiUrl } from "~/utils/api";
 
 const beatSchema = z.object({
-  name: z.string().min(1).max(255),
-  content: z.string().min(1).max(255).optional(),
-  cameraAngle: z.string().min(1).max(255).optional(),
-  notes: z.string().min(1).max(255).optional(),
+  name: z.string().max(255),
+  content: z.string().max(255).nullish(),
+  cameraAngle: z.string().max(255).nullish(),
+  notes: z.string().max(255).nullish(),
   time: z
     .string()
     .refine(
@@ -23,7 +24,7 @@ const beatSchema = z.object({
         path: [], // path is an empty array because we're validating a primitive type, not a nested field
       }
     )
-    .optional(),
+    .nullish(),
 });
 
 export const beatRouter = createTRPCRouter({
