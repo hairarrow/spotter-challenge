@@ -4,8 +4,8 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { AnimatePresence, motion } from "framer-motion";
 
 import type { Props } from "~/components/Act/Act";
-import { BeatComposer } from "./BeatComposer";
-import { Beat } from "./Beat";
+import { BeatComposer } from "~/components/BeatComposer";
+import { Beat } from "~/components/Beat";
 
 export const BeatList: React.FC<Props> = ({ act }) => {
   const [isAdding, setIsAdding] = useState(false);

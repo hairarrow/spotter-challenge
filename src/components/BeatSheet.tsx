@@ -3,12 +3,14 @@ import { BookOpenIcon } from "@heroicons/react/24/solid";
 import { api } from "~/utils/api";
 import { Act } from "~/components/Act";
 import { ActComposer } from "~/components/ActComposer";
+import { LoadingSpinner } from "~/components/LoadingSpinner";
 
 export function BeatSheet() {
-  const { data } = api.act.sheet.useQuery();
+  const { data, isLoading } = api.act.sheet.useQuery();
 
   return (
     <div className="container mx-auto py-16">
+      {isLoading ? <LoadingSpinner /> : <></>}
       {data?.length === 0 ? (
         <div className="flex flex-col items-center justify-center gap-2 rounded-xl bg-zinc-900 py-8 text-zinc-200 md:mx-auto md:max-w-xl md:py-16">
           <BookOpenIcon className="h-12 w-12" />

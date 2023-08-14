@@ -6,7 +6,7 @@ import { PencilSquareIcon, VideoCameraIcon } from "@heroicons/react/20/solid";
 
 import type { Beat as IBeat } from "~/server/api/routers/act";
 import { api } from "~/utils/api";
-import { BeatComposer } from "./BeatComposer";
+import { BeatComposer } from "~/components/BeatComposer";
 
 interface Props {
   actId: number;
