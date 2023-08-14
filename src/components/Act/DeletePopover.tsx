@@ -20,7 +20,7 @@ export function DeletePopover({ act }: ActProps) {
   }
 
   return (
-    <Popover className="relative top-1 z-10">
+    <Popover className="relative top-1 z-40">
       {({ open, close }) => (
         <>
           <Popover.Button
@@ -43,7 +43,7 @@ export function DeletePopover({ act }: ActProps) {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute -top-4 left-0 z-10 mt-5 flex w-screen max-w-max">
+            <Popover.Panel className="absolute -top-4 left-0 mt-5 flex w-screen max-w-max">
               <div className="flex-auto overflow-hidden rounded-2xl bg-zinc-900  leading-6 shadow-2xl shadow-red-300/5 ring-1 ring-red-900/20">
                 <div className="px-12 py-8 text-center text-zinc-100">
                   <p className="leading-8">
