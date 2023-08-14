@@ -6,7 +6,7 @@ import { api } from "~/utils/api";
 
 export const ActComposer: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { mutate: handleCreateAct } = api.act.create.useMutation();
+  const { mutate: handleCreateAct, isLoading } = api.act.create.useMutation();
   const utils = api.useContext();
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -27,7 +27,11 @@ export const ActComposer: React.FC = () => {
   };
 
   return (
-    <motion.form layout onSubmit={handleSubmit} className="mt-12 flex ">
+    <motion.form
+      layout
+      onSubmit={handleSubmit}
+      className={`mt-12 flex ${isLoading ? "animate-pulse" : ""}`}
+    >
       <div className="flex w-full items-center rounded-xl bg-zinc-800 px-3 py-4 md:mx-auto md:w-auto">
         <label htmlFor="actName">
           <PlusCircleIcon className="mr-2 inline-block h-6 w-6 text-zinc-50" />

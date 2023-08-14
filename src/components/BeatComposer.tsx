@@ -29,12 +29,15 @@ export const BeatComposer: React.FC<Props | OptionalProps> = ({
   isEditing,
   beat,
 }) => {
-  const { mutate: handleCreateBeat } = api.beat.create.useMutation();
-  const { mutate: handleUpdateBeat } = api.beat.update.useMutation();
+  const { mutate: handleCreateBeat, isLoading: isCreateLoading } =
+    api.beat.create.useMutation();
+  const { mutate: handleUpdateBeat, isLoading: isUpdateLoading } =
+    api.beat.update.useMutation();
   const [showNotes, setShowNotes] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const utils = api.useContext();
+  const isLoading = isCreateLoading || isUpdateLoading;
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -70,7 +73,9 @@ export const BeatComposer: React.FC<Props | OptionalProps> = ({
 
   return (
     <form
-      className="flex min-w-[320px] flex-col items-stretch justify-stretch gap-1 rounded-lg bg-zinc-900/50 p-4"
+      className={`flex min-w-[320px] flex-col items-stretch justify-stretch gap-1 rounded-lg bg-zinc-900/50 p-4 ${
+        isLoading ? "animate-pulse" : ""
+      }`}
       onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="hidden">
@@ -223,7 +228,8 @@ export const BeatComposer: React.FC<Props | OptionalProps> = ({
       </div>
       <button
         type="submit"
-        className="ml-auto mt-2 rounded-lg bg-zinc-50 px-4 py-1.5 font-medium"
+        className="ml-auto mt-2 rounded-lg bg-zinc-50 px-4 py-1.5 font-medium disabled:opacity-50"
+        disabled={isLoading}
       >
         {isEditing ? "Update" : "Create"} Beat
       </button>

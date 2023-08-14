@@ -15,7 +15,7 @@ interface Props {
 
 export const Beat: React.FC<Props> = ({ beat, actId }) => {
   const [showEdit, setShowEdit] = useState(false);
-  const { mutate: deleteBeat } = api.beat.delete.useMutation();
+  const { mutate: deleteBeat, isLoading } = api.beat.delete.useMutation();
   const ref = useClickAway<HTMLDivElement>(() => setShowEdit(false));
   const utils = api.useContext();
 
@@ -37,7 +37,9 @@ export const Beat: React.FC<Props> = ({ beat, actId }) => {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.8 }}
-      className="group relative flex snap-start gap-2 md:flex-col"
+      className={`group relative flex snap-start gap-2 md:flex-col ${
+        isLoading ? "animate-pulse" : ""
+      }`}
     >
       <AnimatePresence mode="wait">
         {showEdit ? (

@@ -5,7 +5,7 @@ import { api } from "~/utils/api";
 import type { Props as ActProps } from "./Act";
 
 export function DeletePopover({ act }: ActProps) {
-  const { mutate: handleDeleteAct } = api.act.delete.useMutation();
+  const { mutate: handleDeleteAct, isLoading } = api.act.delete.useMutation();
   const utils = api.useContext();
 
   function onDeleteAct() {
@@ -20,7 +20,9 @@ export function DeletePopover({ act }: ActProps) {
   }
 
   return (
-    <Popover className="relative top-1 z-40">
+    <Popover
+      className={`relative top-1 z-40 ${isLoading ? "animate-bounce" : ""}`}
+    >
       {({ open, close }) => (
         <>
           <Popover.Button
