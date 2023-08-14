@@ -76,23 +76,23 @@ export const Beat: React.FC<Props> = ({ beat, actId }) => {
                   <></>
                 )}
               </div>
-              {Boolean(beat.content) ? (
-                <div className="absolute bottom-0 left-0 p-2">
-                  {Boolean(beat.cameraAngle) ? (
-                    <div className="relative line-clamp-1 inline-flex rounded-lg bg-zinc-900 px-2 py-1.5 text-xs font-medium text-zinc-400">
-                      <VideoCameraIcon className="mr-2 inline-block h-4 w-4" />
-                      <p className="line-clamp-1">{beat.cameraAngle}</p>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
+              <div className="absolute bottom-0 left-0 p-2">
+                {Boolean(beat.cameraAngle) ? (
+                  <div className="relative line-clamp-1 inline-flex rounded-lg bg-zinc-900 px-2 py-1.5 text-xs font-medium text-zinc-400">
+                    <VideoCameraIcon className="mr-2 inline-block h-4 w-4" />
+                    <p className="line-clamp-1">{beat.cameraAngle}</p>
+                  </div>
+                ) : (
+                  <></>
+                )}
+                {Boolean(beat.content) ? (
                   <p className="relative z-10 mt-1 line-clamp-2 bg-zinc-800 text-sm text-zinc-300 group-hover/block:line-clamp-none">
                     {beat.content}
                   </p>
-                </div>
-              ) : (
-                <></>
-              )}
+                ) : (
+                  <></>
+                )}
+              </div>
               {Boolean(beat.notes) ? (
                 <div className="absolute left-0 top-8 z-10 p-2">
                   <p className="line-clamp-1 rounded bg-zinc-700 p-0.5 px-1 text-xs text-zinc-300 hover:line-clamp-none">
