@@ -47,7 +47,7 @@ export const BeatList: React.FC<Props> = ({ act }) => {
               layout
               key="add"
               role="button"
-              className="flex h-32 min-w-fit cursor-pointer snap-start flex-col items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/0 text-zinc-500 transition-colors hover:bg-zinc-900/100 hover:text-zinc-100 md:h-40 md:w-72 md:px-8"
+              className="flex h-24 min-w-fit cursor-pointer snap-start flex-col items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/0 text-zinc-500 transition-colors hover:bg-zinc-900/100 hover:text-zinc-100 md:h-44 md:w-72 md:px-8"
               onClick={() => setIsAdding(true)}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ export const BeatList: React.FC<Props> = ({ act }) => {
               }}
             >
               <PlusCircleIcon className="h-12 w-12" />
-              <p className="leading-loose">Add a Beat</p>
+              <p className="font-semibold leading-loose">Add a Beat</p>
             </motion.li>
           )}
         </AnimatePresence>

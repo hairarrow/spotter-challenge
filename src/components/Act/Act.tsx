@@ -14,7 +14,7 @@ export const Act = ({ act }: Props) => (
     className="group/act border-t border-dashed border-zinc-500"
   >
     <div className="flex items-center gap-4 px-2 pb-4">
-      <div className="inline-block rounded-b-lg bg-zinc-200 px-3 py-2 text-sm font-bold">
+      <div className="inline-block rounded-b-lg bg-zinc-400 px-3 py-2 font-bold">
         {act.name}
       </div>
       <DeletePopover act={act} />
