@@ -1,3 +1,9 @@
+# Running Locally
+- Run `npm i`
+- Copy `.env.example` into `.env` and add an appropriate local/remote server as `SPOTTER_API_URL`
+- Run `npm run dev` to start local server
+
+
 # Create T3 App
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
